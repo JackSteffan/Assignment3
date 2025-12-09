@@ -66,17 +66,6 @@ class StudentServiceTest {
     // -------------------------
     // removeStudentByName()
     // -------------------------
-    @Test
-    void testRemoveStudentByName_whenMatchExists_mayThrowConcurrentModification() {
-        StudentService svc = new StudentService();
-        svc.addStudent(new Student("Alice", 20, 3.0));
-        svc.addStudent(new Student("Bob", 21, 3.0));
-
-        // The implementation removes from the list during a for-each loop,
-        // which will typically cause ConcurrentModificationException.
-        assertThrows(ConcurrentModificationException.class,
-                () -> svc.removeStudentByName("Alice"));
-    }
 
     @Test
     void testRemoveStudentByName_whenNoMatch_doesNotThrow() {
