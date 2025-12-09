@@ -1,34 +1,69 @@
+package org.example;
+
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class StudentServiceTest {
 
-    @Test
-    void testAddStudentAndTopStudent() {
-        StudentService service = new StudentService();
-        Student s1 = new Student("Alice", 20, 3.5);
-        Student s2 = new Student("Bob", 22, 3.9);
+    private StudentService service;
 
-        service.addStudent(s1);
-        service.addStudent(s2);
-
-        // Test if top student is correctly identified
-        Student top = service.getTopStudent();
-        assertEquals("Bob", top.getName());
+    @BeforeEach
+    void setup() {
+        service = new StudentService();
+        service.addStudent(new Student("Alice", 90));
+        service.addStudent(new Student("Bob", 80));
+        service.addStudent(new Student("Charlie", 70));
     }
 
     @Test
-    void testCalculateAverageGpa() {
-        StudentService service = new StudentService();
-        service.addStudent(new Student("Alice", 20, 3.5));
-        service.addStudent(new Student("Bob", 22, 3.5));
+    void testAddStudent() {
+        Student s = new Student("David", 88);
+        service.addStudent(s);
 
-        double avg = service.calculateAverageGpa();
-        assertEquals(3.5, avg, 0.001);
+        assertTrue(service.getAllStudents().contains(s));
     }
 
-    // Intentionally leave out tests for:
-    // - removeStudentByName
-    // - behavior with empty student list
-    // - Utils methods
+    @Test
+    void testGetAllStudents() {
+        List<Student> students = service.getAllStudents();
+        assertEquals(3, students.size());
+    }
+
+    @Test
+    void testGetStudentByNameFound() {
+        Student s = service.getStudentByName("Bob");
+        assertNotNull(s);
+        assertEquals("Bob", s.getName());
+        assertEquals(80, s.getScore());
+    }
+
+    @Test
+    void testGetStudentByNameNotFound() {
+        Student s = service.getStudentByName("Nonexistent");
+        assertNull(s);
+    }
+
+    @Test
+    void testRemoveStudentByNameSuccess() {
+        boolean removed = service.removeStudentByName("Charlie");
+
+        assertTrue(removed);
+        assertNull(service.getStudentByName("Charlie"));
+    }
+
+    @Test
+    void testRemoveStudentByNameFail() {
+        boolean removed = service.removeStudentByName("Ghost");
+        assertFalse(removed);
+    }
+
+    @Test
+    void testGetAverageScore() {
+        double avg = service.getAverageScore();
+        assertEquals((90 + 80 + 70) / 3.0, avg);
+    }
 }
+
