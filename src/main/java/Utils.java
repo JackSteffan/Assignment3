@@ -1,6 +1,4 @@
 
-package org.example;
-
 public class Utils {
 
     public static boolean isNullOrEmpty(String value) {
