@@ -38,7 +38,7 @@ jobs:
         run: mvn jacoco:report
 
       - name: Upload JaCoCo report (optional)
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: jacoco-report
           path: target/site/jacoco
@@ -47,7 +47,7 @@ jobs:
         run: mvn org.pitest:pitest-maven:mutationCoverage
 
       - name: Upload PIT report
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: pitest-results
           path: target/pit-reports
