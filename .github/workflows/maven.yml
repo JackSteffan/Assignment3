@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Checkout code
+      # Checkout repository
       - name: Checkout repository
         uses: actions/checkout@v4
 
@@ -52,6 +52,8 @@ jobs:
       # Run PIT mutation testing (configured in pom.xml)
       - name: Run PIT mutation testing
         run: mvn org.pitest:pitest-maven:mutationCoverage
+        env:
+          MAVEN_OPTS: -Xmx2048m  # Increase memory for minion JVM
 
       # Upload PIT report
       - name: Upload PIT report
