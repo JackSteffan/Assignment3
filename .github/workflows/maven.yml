@@ -49,14 +49,9 @@ jobs:
           name: jacoco-report
           path: target/site/jacoco
 
-      # Run PIT mutation testing safely
+      # Run PIT mutation testing (configured in pom.xml)
       - name: Run PIT mutation testing
-        run: mvn org.pitest:pitest-maven:mutationCoverage \
-              -DtargetClasses="com.yourpackage.*" \
-              -DtargetTests="com.yourpackage.*Test" \
-              -Dmutators=ALL \
-              -DjvmArgs="-Xmx1024m" \
-              -Dthreads=1
+        run: mvn org.pitest:pitest-maven:mutationCoverage
 
       # Upload PIT report
       - name: Upload PIT report
