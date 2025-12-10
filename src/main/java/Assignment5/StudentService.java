@@ -1,3 +1,5 @@
+package Assignment5;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,10 +40,7 @@ public class StudentService {
 
     // Unused method (code smell)
     public void removeStudentByName(String name) {
-        for (Student s : students) {
-            if (s.getName().equals(name)) {
-                students.remove(s);  // Bug: ConcurrentModificationException possible
-            }
-        }
+        students.removeIf(student -> student.getName().equals(name));
     }
+    
 }

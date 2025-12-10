@@ -1,3 +1,4 @@
+package Assignment5;
 
 public class Main {
     public static void main(String[] args) {
@@ -19,10 +20,5 @@ public class Main {
         // Code smell: Repeated calls, magic numbers
         System.out.println("Average GPA: " + service.calculateAverageGpa());
 
-        // Dead code / unused
-        int x = 42;
-        if (x > 100) {
-            System.out.println("Impossible");  // Never executes
-        }
     }
 }

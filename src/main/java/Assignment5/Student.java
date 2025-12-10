@@ -1,3 +1,4 @@
+package Assignment5;
 
 public class Student {
     public String name;  // Should be private
