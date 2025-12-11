@@ -82,14 +82,14 @@
                 <configuration>
                     <!-- Only mutate classes in Assignment5 package -->
                     <targetClasses>
-                        <param>StudentService</param>
-                        <param>Utils</param>
+                        <param>Assignment5.StudentService</param>
+                        <param>Assignment5.Utils</param>
                     </targetClasses>
 
                     <!-- Only consider test classes in Assignment5 package -->
                     <targetTests>
-                        <param>StudentServiceTest</param>
-                        <param>UtilsTest</param>
+                        <param>Assignment5.StudentServiceTest</param>
+                        <param>Assignment5.UtilsTest</param>
                     </targetTests>
                 </configuration>
             </plugin>
